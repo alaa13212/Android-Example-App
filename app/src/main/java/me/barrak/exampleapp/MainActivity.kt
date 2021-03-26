@@ -50,7 +50,7 @@ fun MyScreenContent(names: List<String> = listOf("Android", "there")) {
         }
 
         Divider(color = Color.Transparent, thickness = 32.dp)
-        Counter(count = counterState.value, updateCount = { counterState.value++ })
+        Counter(count = counterState.value, updateCount = { newCount -> counterState.value = newCount })
     }
 }
 
@@ -60,8 +60,8 @@ fun Greeting(name: String) {
 }
 
 @Composable
-fun Counter(count: Int, updateCount: () -> Unit) {
-    Button(onClick = updateCount) {
+fun Counter(count: Int, updateCount: (Int) -> Unit) {
+    Button(onClick = { updateCount(count + 1) }) {
         Text("I've been clicked $count times")
     }
 }
