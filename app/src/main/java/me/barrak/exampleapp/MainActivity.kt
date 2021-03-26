@@ -1,22 +1,20 @@
 package me.barrak.exampleapp
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import android.os.*
+import androidx.activity.*
+import androidx.activity.compose.*
+import androidx.compose.animation.*
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import me.barrak.exampleapp.ui.theme.AndroidExampleAppTheme
+import androidx.compose.runtime.*
+import androidx.compose.ui.*
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.tooling.preview.*
+import androidx.compose.ui.unit.*
+import me.barrak.exampleapp.ui.theme.*
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +58,16 @@ private fun NameList(names: List<String>, modifier: Modifier) {
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))
+    var isSelected by remember { mutableStateOf(false) }
+    val backgroundColor by animateColorAsState(if (isSelected) Color.Red else Color.Transparent)
+
+    Text(
+        text = "Hello $name!",
+        modifier = Modifier
+            .padding(24.dp)
+            .background(color = backgroundColor)
+            .clickable { isSelected = !isSelected }
+    )
 }
 
 @Composable
