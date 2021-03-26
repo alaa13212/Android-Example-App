@@ -9,12 +9,13 @@ import me.barrak.exampleapp.ui.components.*
 
 @Composable
 fun MyScreenContent(names: List<String> = List(1000) { "Hello Android #$it" }) {
-    val counterState = remember { mutableStateOf(0) }
+    MyAppScaffold {
+        val counterState = remember { mutableStateOf(0) }
 
-    Column(modifier = Modifier.fillMaxHeight()) {
-        MyAppTopBar()
-        NameList(names = names, modifier = Modifier.weight(1f))
-        Counter(count = counterState.value, updateCount = { newCount -> counterState.value = newCount })
+        Column(modifier = Modifier.fillMaxHeight()) {
+            NameList(names = names, modifier = Modifier.weight(1f))
+            Counter(count = counterState.value, updateCount = { newCount -> counterState.value = newCount })
+        }
     }
 }
 

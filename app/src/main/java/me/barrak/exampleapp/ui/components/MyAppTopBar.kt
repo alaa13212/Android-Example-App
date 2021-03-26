@@ -3,6 +3,7 @@ package me.barrak.exampleapp.ui.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.*
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
@@ -17,6 +18,11 @@ fun MyAppTopBar(title: String = "Example App") {
         },
         navigationIcon = {
             Icon(Icons.Rounded.Menu, contentDescription = null, modifier = Modifier.fillMaxWidth())
+        },
+        actions = {
+            IconButton(onClick = { /* doSomething() */ }) {
+                Icon(Icons.Filled.Favorite, contentDescription = null)
+            }
         }
     )
 }
